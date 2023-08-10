@@ -11,6 +11,11 @@ Description: description
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    const debug = (message, isHeading, ...optionalParams) => { console.log(`%c${message}`, `font-size: ${isHeading ? '.95rem' : '0.8rem'}`, ...optionalParams) };
+
+    debug('Emoji to App Icon Generator by Martin Shaw', true);
+    debug('Do you want to see the current state? type window.state in this console and press enter');
+
     const state = {
         elements: {
             emojiPicker: document.querySelector("emoji-picker"),
@@ -169,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
             state.data.canvasDimension - (outerSquareMargin * 2) - (state.data.currentBorderWidth * 2), 
             state.data.canvasDimension - (outerSquareMargin * 2) - (state.data.currentBorderWidth * 2), 
         );
-        ctx.fillStyle = "#ffffff";
+        ctx.fillStyle = state.data.currentBackgroundColour;
         ctx.fill();
         ctx.closePath();
         
@@ -181,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.closePath();
     };
 
-    const drawCanvas = () => {
+    const drawCanvas = () => {        
         const dpr = window.devicePixelRatio;
         const ctx = state.elements.canvas.getContext("2d");
 
