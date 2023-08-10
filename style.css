@@ -12,6 +12,15 @@ body {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+
+    background-image:
+        linear-gradient(45deg, #cccccc77 25%, transparent 25%), 
+        linear-gradient(-45deg, #cccccc77 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #cccccc77 75%),
+        linear-gradient(-45deg, transparent 75%, #cccccc77 75%);
+
+    background-size: 30px 30px;    
+    background-position: 0 0, 60px 0, 60px 60px, 0px 60px;
 }
 
 .sidebar {
@@ -22,9 +31,10 @@ body {
     background: #111;
     overflow-y: scroll;
     overflow-x: hidden;
+    position: relative;
 }
 
-.sidebar .sidebar__emojipicker, .sidebar .sidebar__select, .sidebar .sidebar__slider, .sidebar .sidebar__colourpicker {
+.sidebar .sidebar__emojipicker, .sidebar .sidebar__select, .sidebar .sidebar__slider, .sidebar .sidebar__colourpicker, .sidebar__button {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -80,9 +90,29 @@ body {
 
 }
 
+.sidebar__button {
+    position: sticky;
+    bottom: -15px;
+    box-shadow: 0 0 5px #666;
+    padding: 20px 1rem;
+    background: black;
+}
+
+.sidebar__button button {
+    width: calc(100% - 2rem);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #222;
+    color: #eee;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 .output {
     flex: 1;
-    background: #ddd;
+    background: transparent;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -90,6 +120,5 @@ body {
 }
 
 .output canvas {
-    /* width: 90%; */
-    background: #fff;
+    background: transparent;
 }
