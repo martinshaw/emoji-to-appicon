@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
             canvas: document.querySelector("canvas"),
         },
         data: {
+            currentEmojiFont: '"Twemoji Mozilla","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji","EmojiOne Color","Android Emoji", "Source Sans Pro", sans-serif',
             currentEmoji: null,
             currentShape: 'circle', // 'circle' | 'square | 'squircle'
             // currentBorderRadius: 14,
@@ -55,13 +56,15 @@ document.addEventListener("DOMContentLoaded", function () {
     setElementValuesFromCurrentStateData();
 
     const determineCanvasSizeFromElement = () => {
+        const dpr = window.devicePixelRatio;
+
         const smallestWidthOrHeightOfCanvasContainer = Math.min(state.elements.output.clientWidth, state.elements.output.clientHeight);
         const oneOneAspectDimensionWithMargin = smallestWidthOrHeightOfCanvasContainer - 20;
 
-        state.elements.canvas.width = oneOneAspectDimensionWithMargin;
-        state.elements.canvas.height = oneOneAspectDimensionWithMargin;
+        state.elements.canvas.width = oneOneAspectDimensionWithMargin * dpr;
+        state.elements.canvas.height = oneOneAspectDimensionWithMargin * dpr;
         
-        state.data.canvasDimension = oneOneAspectDimensionWithMargin;
+        state.data.canvasDimension = oneOneAspectDimensionWithMargin * dpr;
     };
 
     determineCanvasSizeFromElement();
@@ -100,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.closePath();
         
         ctx.beginPath();
-        ctx.font = `${innerCircleRadius}px serif`;
+        ctx.font = `${innerCircleRadius}px ${state.data.currentEmojiFont}`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText(state?.data?.currentEmoji?.unicode || '', circleCentreX, circleCentreY + (innerCircleRadius * .1));
@@ -140,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.closePath();
         
         ctx.beginPath();
-        ctx.font = `${400 - state.data.currentBorderWidth}px serif`;
+        ctx.font = `${400 - state.data.currentBorderWidth}px ${state.data.currentEmojiFont}`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText(state?.data?.currentEmoji?.unicode || '', state.data.canvasDimension / 2, state.data.canvasDimension / 2 + 26);
@@ -148,9 +151,12 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const drawCanvas = () => {
+        const dpr = window.devicePixelRatio;
         const ctx = state.elements.canvas.getContext("2d");
 
         ctx.clearRect(0, 0, state.data.canvasDimension, state.data.canvasDimension);
+
+        ctx.scale(dpr, dpr);
 
         if (state.data.currentShape === 'circle') {
             drawCircle(ctx);
