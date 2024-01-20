@@ -9,3 +9,7 @@
 https://martinshaw.github.io/emoji-to-appicon/
 
 ![Screenshot](screenshot.png)
+
+## How was it made?
+
+As I didn't deem it necessary to use any frameworks for this basic tool, I wrote it using a single vanilla JavaScript file. The HTML and CSS are also very basic.
