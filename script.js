@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         data: {
             currentEmojiFont: '"Twemoji Mozilla","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji","EmojiOne Color","Android Emoji", "Source Sans Pro", sans-serif',
             currentEmoji: null,
-            currentShape: 'circle', // 'just-emoji' | 'circle' | 'square | 'squircle'
+            currentShape: 'circle', // 'just-emoji' | 'circle' | 'square'
             currentBorderWidth: 30,
             currentBorderColour: "#000000",
             currentBackgroundColour: "#ffffff",
@@ -204,10 +204,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         else if (state.data.currentShape === 'square') {
             drawSquare(ctx);
-        }
-
-        else if (state.data.currentShape === 'squircle') {
-            alert('Squircle shape coming soon!');
         }
     }
 
