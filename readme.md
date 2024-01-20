@@ -1,5 +1,5 @@
 <center>
-<h1>Emoji to App Icon by Martin Shaw</h1>
+<h1>Emoji to App Icon from Martin Shaw</h1>
 
 <i>Quick, easy and powerful way to create an icon for your project</i>
 </center>
